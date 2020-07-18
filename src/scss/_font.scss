@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Rozanova';
+  src: url('~@/assets/fonts/RozanovaGEO-Demo-SemiBold.otf') format('opentype'),
+  url('~@/assets/fonts/RozanovaGEO-Demo-Thin.otf') format('opentype'),
+  url('~@/assets/fonts/RozanovaHUM-Demo-SemiBold.otf') format('opentype'),
+  url('~@/assets/fonts/RozanovaHUM-Demo-Thin.otf') format('opentype');
+}
+
+html, body {
+  font-family: Rozanova, Roboto, sans-serif;
+}
