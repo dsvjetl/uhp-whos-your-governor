@@ -1,7 +1,5 @@
 <template>
-  <div class="co-home">
 
-  </div>
 </template>
 
 <script lang="ts">
@@ -15,5 +13,6 @@
 
 <style lang="scss" scoped>
   .co-home {
+    padding-top: 20px;
   }
 </style>

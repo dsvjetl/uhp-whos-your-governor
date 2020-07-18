@@ -1,11 +1,5 @@
-@font-face {
-  font-family: 'Rozanova';
-  src: url('~@/assets/fonts/RozanovaGEO-Demo-SemiBold.otf') format('opentype'),
-  url('~@/assets/fonts/RozanovaGEO-Demo-Thin.otf') format('opentype'),
-  url('~@/assets/fonts/RozanovaHUM-Demo-SemiBold.otf') format('opentype'),
-  url('~@/assets/fonts/RozanovaHUM-Demo-Thin.otf') format('opentype');
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;500;600&display=swap');
 
-html, body {
-  font-family: Rozanova, Roboto, sans-serif;
+body, html, * {
+  font-family: 'Poppins', Roboto, sans-serif;
 }
