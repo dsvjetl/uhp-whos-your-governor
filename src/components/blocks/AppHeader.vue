@@ -1,7 +1,7 @@
 <template>
   <header class="co-app-header">
     <div class="left">
-
+      <LogoIcon class="logo-icon"/>
     </div>
     <div class="right">
       <AppButton class="lang-button">
@@ -18,9 +18,11 @@
   import Vue from 'vue';
   import { Component } from 'vue-property-decorator';
   import AppButton from '@/components/elements/AppButton.vue';
+  import IllustrationSpeakerIcon from '@/components/icons/IllustrationSpeakerIcon.vue';
+  import LogoIcon from '@/components/icons/LogoIcon.vue';
 
   @Component({
-    components: { AppButton },
+    components: { LogoIcon, AppButton },
   })
   export default class AppHeader extends Vue {
 
@@ -34,8 +36,9 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: $main;
+    background-color: transparent;
     padding: 5px 0;
+    z-index: 10;
 
     .left, .right {
       flex: 1;
@@ -54,6 +57,10 @@
       &:first-of-type {
         margin-right: 10px;
       }
+    }
+
+    .logo-icon {
+      height: 25px;
     }
   }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div class="co-home">
     <AppHeader/>
+    <MainForm/>
   </div>
 </template>
 
@@ -8,8 +9,9 @@
   import Vue from 'vue';
   import { Component } from 'vue-property-decorator';
   import AppHeader from '@/components/blocks/AppHeader.vue';
+  import MainForm from '@/components/blocks/MainForm.vue';
   @Component({
-    components: { AppHeader },
+    components: { MainForm, AppHeader },
   })
   export default class Home extends Vue {
   }
