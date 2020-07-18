@@ -1,7 +1,7 @@
 <template>
   <div class="co-home">
     <AppHeader/>
-    <MainForm/>
+    <UpperSection/>
   </div>
 </template>
 
@@ -9,9 +9,9 @@
   import Vue from 'vue';
   import { Component } from 'vue-property-decorator';
   import AppHeader from '@/components/blocks/AppHeader.vue';
-  import MainForm from '@/components/blocks/MainForm.vue';
+  import UpperSection from '@/components/blocks/UpperSection.vue';
   @Component({
-    components: { MainForm, AppHeader },
+    components: { UpperSection, AppHeader },
   })
   export default class Home extends Vue {
   }
