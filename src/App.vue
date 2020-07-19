@@ -15,6 +15,8 @@
   export default class  extends Vue {
     private created(): void {
       this.$store.dispatch('getCounties');
+      this.$store.dispatch('getTowns');
+      this.$store.dispatch('getCommunities');
     }
   }
 </script>

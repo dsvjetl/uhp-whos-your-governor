@@ -1,15 +1,17 @@
 <template>
-  <form class="co-main-form">
+  <form class="co-main-form" @submit.prevent>
 
     <div class="form-field">
       <p class="u-5 field-name --bold-500">County</p>
       <label class="form-label">
         <ElAutocomplete
           class="inline-input"
-          v-model="selectedCounty"
-          :fetch-suggestions="querySearch"
           placeholder="County"
           prefix-icon="el-icon-location-outline"
+          v-model="selectedCountyName"
+          :fetch-suggestions="countryQuerySearch"
+          @select="onCountySelect"
+          @change="onCountyChange"
         />
       </label>
     </div>
@@ -20,6 +22,9 @@
         <ElAutocomplete
           class="inline-input"
           placeholder="County"
+          v-model="selectedTownOrCommunityName"
+          :fetch-suggestions="townOrCommunityQuerySearch"
+          @select="onTownOrCommunitySelect"
         />
       </label>
       <div class="button-wrapper">
@@ -38,23 +43,57 @@
   import AppButton from '@/components/elements/AppButton.vue';
   import { mapGetters } from 'vuex';
   import { County } from '@/types/County';
+  import { TownOrCommunity } from '@/types/TownOrCommunity';
 
   @Component({
     components: { AppButton },
-    computed: mapGetters(['allCountiesAlphabeticallyOrdered']),
+    computed: mapGetters(['allCountiesAlphabeticallyOrdered', 'allTownsAndCommunitiesAlphabeticallyOrdered']),
   })
   export default class MainForm extends Vue {
-    public allCountiesAlphabeticallyOrdered: any;
+    public allCountiesAlphabeticallyOrdered!: County[];
+    public allTownsAndCommunitiesAlphabeticallyOrdered!: TownOrCommunity[];
 
     public selectedCounty: County | null = null;
+    public selectedCountyName: string = '';
+    public selectedTownOrCommunity: TownOrCommunity | null = null;
+    public selectedTownOrCommunityName: string = '';
 
-    public querySearch(query: string, cb: ([]) => string[]) {
-      const counties: County[] = this.allCountiesAlphabeticallyOrdered.map(
-        (county: County) => Object.assign(county, { value: county.name }),
+    public countryQuerySearch(query: string, cb: ([]) => County[]): void {
+      this.querySearch<County>(query, cb, this.allCountiesAlphabeticallyOrdered);
+    }
+
+    public townOrCommunityQuerySearch(query: string, cb: ([]) => TownOrCommunity[]): void {
+      const allTownsAndCommunities = this.selectedCounty ?
+        this.allTownsAndCommunitiesAlphabeticallyOrdered.filter(
+          (townOrCommunity: TownOrCommunity) => townOrCommunity.countyID === this.selectedCounty!.ID,
+        ) : this.allTownsAndCommunitiesAlphabeticallyOrdered;
+
+      this.querySearch<TownOrCommunity>(query, cb, allTownsAndCommunities);
+    }
+
+    public onCountySelect(county: County): void {
+      this.selectedCounty = county;
+      this.selectedTownOrCommunity = null;
+      this.selectedTownOrCommunityName = '';
+    }
+
+    public onCountyChange(): void {
+      if (this.selectedCountyName.length <= 0) {
+        this.selectedCounty = null;
+      }
+    }
+
+    public onTownOrCommunitySelect(townOrCommunity: TownOrCommunity): void {
+      this.selectedTownOrCommunity = townOrCommunity;
+    }
+
+    private querySearch<T>(query: string, cb: ([]) => any[], resources: T[]): void {
+      const mappedResources: T[] = resources.map(
+        (resource: any) => Object.assign(resource, { value: resource.name }),
       );
       const results = query ?
-        counties.filter((county: County) => county.value!.toLowerCase().includes(query.toLowerCase())) :
-        counties;
+        mappedResources.filter((resource: any) => resource.value!.toLowerCase().includes(query.toLowerCase())) :
+        mappedResources;
 
       cb(results);
     }

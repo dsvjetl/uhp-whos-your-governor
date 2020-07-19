@@ -1,6 +1,5 @@
 export interface ApiRoutes {
   getAllCounties: string;
-  // TODO
-  // getAllTowns: string;
-  // getAllCommunities: string;
+  getAllTowns: string;
+  getAllCommunities: string;
 }

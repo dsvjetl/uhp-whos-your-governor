@@ -7,9 +7,9 @@ export class AjaxService {
     this.axiosApp = axiosApp;
   }
 
-  public async get(url: string) {
+  public async get(url: string): Promise<AxiosResponse> {
     return await this.axiosApp.get(url)
-      .then((response: AxiosResponse) => Promise.resolve(response))
+      .then((response: AxiosResponse): AxiosPromise => Promise.resolve(response))
       .catch((error: AxiosError) => Promise.reject(error));
   }
 }

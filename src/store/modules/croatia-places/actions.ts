@@ -15,6 +15,27 @@ export const actions = {
     }
 
     context.commit('setAllCounties', allCounties.data);
-    return allCounties;
+  },
+  async getTowns(context: any): Promise<any> {
+    let allTowns;
+
+    try {
+      allTowns = await axiosCroatiaApiService.get(apiRoutes.getAllTowns);
+    } catch (e) {
+      return await Promise.reject(e);
+    }
+
+    context.commit('setAllTowns', allTowns.data);
+  },
+  async getCommunities(context: any): Promise<any> {
+    let allCommunities;
+
+    try {
+      allCommunities = await axiosCroatiaApiService.get(apiRoutes.getAllCommunities);
+    } catch (e) {
+      return await Promise.reject(e);
+    }
+
+    context.commit('setAllCommunities', allCommunities.data);
   },
 };
