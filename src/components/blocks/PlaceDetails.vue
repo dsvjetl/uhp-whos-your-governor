@@ -62,11 +62,21 @@
     width: 100%;
     position: relative;
     top: -40px;
+    padding-bottom: 120px;
+
+    @include media('>=phone', '<=tablet') {
+      top: 0;
+    }
 
     .place-name-wrapper {
       width: percentage(7 / 24);
       padding: 15px 0 15px percentage(5 / 24);
       background-color: $main;
+
+      @include media('>=phone', '<=tablet') {
+        width: percentage(15 / 24);
+        padding: 10px 5px 15px percentage(3 / 24);
+      }
     }
 
     .place-name {

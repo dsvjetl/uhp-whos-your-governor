@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="app">
     <router-view/>
     <AppFooter/>
   </div>
@@ -16,3 +16,11 @@
 
   }
 </script>
+
+<style lang="scss">
+  .app {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: -115px;
+  }
+</style>

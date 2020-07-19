@@ -37,6 +37,10 @@
     padding: 20px percentage(3 / 24);
     background-color: $purple-dark;
     height: 75px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
     .top {
       color: $purple;

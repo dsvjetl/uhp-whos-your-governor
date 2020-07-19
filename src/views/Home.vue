@@ -22,7 +22,5 @@
 
 <style lang="scss" scoped>
   .co-home {
-    min-height: 100vh;
-    margin-bottom: -115px; // minus footer height
   }
 </style>
