@@ -1,32 +1,33 @@
 <template>
   <form class="co-main-form">
 
-      <div class="form-field">
-        <p class="u-5 field-name --bold-500">County</p>
-        <label class="form-label">
-          <el-autocomplete
-            class="inline-input"
-            v-model="state1"
-            :fetch-suggestions="querySearch"
-            placeholder="County"
-            prefix-icon="el-icon-location-outline"
-          />
-        </label>
-      </div>
+    <div class="form-field">
+      <p class="u-5 field-name --bold-500">County</p>
+      <label class="form-label">
+        <ElAutocomplete
+          class="inline-input"
+          v-model="state1"
+          :fetch-suggestions="querySearch"
+          placeholder="County"
+          prefix-icon="el-icon-location-outline"
+        />
+      </label>
+    </div>
 
-      <div class="form-field">
-        <p class="u-5 field-name --bold-500">Town or Community</p>
-        <label class="form-label">
-          <el-autocomplete
-            class="inline-input"
-            v-model="state1"
-            :fetch-suggestions="querySearch"
-            placeholder="County"
-            prefix-icon="el-icon-location-outline"
-          />
-        </label>
-        <el-button>Hello</el-button>
-      </div>
+    <div class="form-field">
+      <p class="u-5 field-name --bold-500">Town or Community</p>
+      <label class="form-label">
+        <ElAutocomplete
+          class="inline-input"
+          v-model="state1"
+          :fetch-suggestions="querySearch"
+          placeholder="County"
+        />
+      </label>
+      <AppButton class="submit-button">
+        <span class="u-5">Show Details</span>
+      </AppButton>
+    </div>
 
   </form>
 </template>
@@ -34,8 +35,11 @@
 <script lang="ts">
   import Vue from 'vue';
   import { Component } from 'vue-property-decorator';
+  import AppButton from '@/components/elements/AppButton.vue';
 
-  @Component
+  @Component({
+    components: { AppButton },
+  })
   export default class MainForm extends Vue {
     public state1: string = '';
 
@@ -61,15 +65,24 @@
 
 <style lang="scss" scoped>
   .co-main-form {
-    padding-top: 100px;
+    padding-top: 20px;
     position: relative;
 
     .form-field {
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
     .field-name {
       margin-bottom: 3px;
+    }
+
+    .submit-button {
+      margin-left: 20px;
+      height: 40px;
+    }
+
+    .inline-input {
+      width: 200px;
     }
   }
 </style>

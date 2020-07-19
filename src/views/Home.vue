@@ -2,6 +2,7 @@
   <div class="co-home">
     <AppHeader/>
     <UpperSection/>
+    <PlaceDetails/>
   </div>
 </template>
 
@@ -10,8 +11,9 @@
   import { Component } from 'vue-property-decorator';
   import AppHeader from '@/components/blocks/AppHeader.vue';
   import UpperSection from '@/components/blocks/UpperSection.vue';
+  import PlaceDetails from '@/components/blocks/PlaceDetails.vue';
   @Component({
-    components: { UpperSection, AppHeader },
+    components: { PlaceDetails, UpperSection, AppHeader },
   })
   export default class Home extends Vue {
   }

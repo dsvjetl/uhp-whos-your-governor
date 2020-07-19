@@ -1,7 +1,8 @@
 <template>
   <section class="co-upper-section">
     <div class="left">
-      <h1 class="u-1">
+      <div class="temp-border"></div>
+      <h1 class="u-1 main-title">
         Who's Your <span class="--bold-600 governor">Governor ?</span>
       </h1>
       <MainForm/>
@@ -31,6 +32,18 @@
 <style lang="scss" scoped>
   .co-upper-section {
     display: flex;
+    min-height: 455px;
+
+    .temp-border {
+      width: 60px;
+      height: 0;
+      border: 3px solid $main;
+    }
+
+    .main-title {
+      margin: 10px 0 0;
+      max-width: 500px;
+    }
 
     .left {
       width: percentage(12 / 24);
@@ -46,7 +59,7 @@
 
     .speaker-icon {
       position: absolute;
-      right: calc(50% - 130px);
+      right: calc(50% - 140px);
       top: calc(50% - 150px);
       width: 200px;
     }

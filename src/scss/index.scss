@@ -6,3 +6,7 @@
 @import "mixins";
 @import "colors";
 @import "headings";
+
+body, html {
+  width: percentage(24 / 24);
+}
