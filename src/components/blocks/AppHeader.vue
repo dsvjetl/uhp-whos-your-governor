@@ -55,7 +55,7 @@
     @include transition-all;
 
     &.has-background {
-      background-color: rgba($purple-light-2, .8);
+      background-color: $purple-light-2;
       box-shadow: 0 7px 19px -1px $main;
     }
 
