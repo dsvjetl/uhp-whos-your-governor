@@ -1,5 +1,8 @@
 <template>
-  <header class="co-app-header">
+  <header
+    class="co-app-header"
+    :class="{'has-background': hasBackground}"
+  >
     <div class="left">
       <LogoIcon class="logo-icon"/>
     </div>
@@ -25,7 +28,17 @@
     components: { LogoIcon, AppButton },
   })
   export default class AppHeader extends Vue {
+    public hasBackground: boolean = false;
 
+    private mounted(): void {
+      this.eventListeners();
+    }
+
+    private eventListeners(): void {
+      window.addEventListener('scroll', () => {
+        this.hasBackground = window.pageYOffset > 40;
+      });
+    }
   }
 </script>
 
@@ -39,6 +52,12 @@
     background-color: transparent;
     padding: 5px 0;
     z-index: 10;
+    @include transition-all;
+
+    &.has-background {
+      background-color: rgba($purple-light-2, .8);
+      box-shadow: 0 7px 19px -1px $main;
+    }
 
     .left, .right {
       flex: 1;
