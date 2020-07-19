@@ -73,10 +73,7 @@
         return;
       }
 
-      console.log({
-        selectedCounty: this.selectedCounty,
-        selectedTownOrCommunity: this.selectedTownOrCommunity,
-      });
+      this.$store.dispatch('getTownAndCommunityDetails', this.selectedTownOrCommunity);
     }
 
     public countryQuerySearch(query: string, cb: ([]) => County[]): void {

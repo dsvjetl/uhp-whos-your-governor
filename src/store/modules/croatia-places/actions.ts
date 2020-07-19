@@ -1,6 +1,7 @@
 import { axiosCroatiaApi } from '@/api/axiosCroatiaApi';
 import { apiRoutes } from '@/api/apiRoutes';
 import { AjaxService } from '@/utils/services/AjaxService';
+import { TownOrCommunity } from '@/types/TownOrCommunity';
 
 const axiosCroatiaApiService = new AjaxService(axiosCroatiaApi);
 
@@ -37,5 +38,20 @@ export const actions = {
     }
 
     context.commit('setAllCommunities', allCommunities.data);
+  },
+  async getTownAndCommunityDetails(context: any, townOrCommunity: TownOrCommunity): Promise<any> {
+    let townAndCommunityDetails;
+    const townOrCommunityId: number = townOrCommunity.ID;
+    const townOrCommunityEntityType: number = townOrCommunity.entityType;
+
+    try {
+      townAndCommunityDetails = await axiosCroatiaApiService.get(
+        apiRoutes.getTownAndCommunityDetails(townOrCommunityEntityType, townOrCommunityId),
+      );
+    } catch (e) {
+      return await Promise.reject(e);
+    }
+
+    context.commit('setTownAndCommunityDetails', townAndCommunityDetails.data);
   },
 };

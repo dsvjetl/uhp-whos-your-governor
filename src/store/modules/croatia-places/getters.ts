@@ -25,4 +25,7 @@ export const getters = {
     const townsAndCommunities = [...allCommunities, ...allTowns];
     return sortBy(townsAndCommunities, ['name']);
   },
+  townAndCommunityDetails(state: CroatiaPlacesState) {
+    return state.townAndCommunityDetails;
+  },
 };

@@ -4,4 +4,5 @@ export const state: CroatiaPlacesState = {
   allCounties: {},
   allTowns: {},
   allCommunities: {},
+  townAndCommunityDetails: {},
 };

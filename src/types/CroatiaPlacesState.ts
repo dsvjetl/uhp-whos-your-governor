@@ -1,5 +1,6 @@
 import { County } from '@/types/County';
 import { TownOrCommunity } from '@/types/TownOrCommunity';
+import { TownAndCommunityDetails } from '@/types/TownAndCommunityDetails';
 
 export interface AllCountiesFilled {
   allCounties: {
@@ -29,4 +30,5 @@ export interface CroatiaPlacesState {
   allCommunities: {} | {
     communities: TownOrCommunity[];
   };
+  townAndCommunityDetails: {} | TownAndCommunityDetails;
 }
