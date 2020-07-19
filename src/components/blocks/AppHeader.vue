@@ -32,7 +32,7 @@
 <style lang="scss" scoped>
   .co-app-header {
     display: flex;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -44,18 +44,30 @@
       flex: 1;
     }
 
+    .left {
+      padding-left: percentage(5 / 24);
+
+      @include media('>=phone', '<=tablet') {
+        padding-left: percentage(1 / 24);
+      }
+    }
+
     .right {
       text-align: right;
       padding-right: percentage(2 / 24);
-    }
 
-    .left {
-      padding-left: percentage(5 / 24);
+      @include media('>=phone', '<=tablet') {
+        padding-left: percentage(1 / 24);
+      }
     }
 
     .lang-button {
       &:first-of-type {
         margin-right: 10px;
+      }
+
+      @include media('>=phone', '<=tablet') {
+        padding: 5px 10px;
       }
     }
 

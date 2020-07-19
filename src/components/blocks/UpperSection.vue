@@ -39,7 +39,7 @@
       height: 0;
       border: 3px solid $main;
 
-      @include media('>phone', '<=tablet') {
+      @include media('>=phone', '<=tablet') {
         width: 100%;
       }
     }
@@ -48,7 +48,7 @@
       margin: 10px 0 0;
       max-width: 500px;
 
-      @include media('>phone', '<=tablet') {
+      @include media('>=phone', '<=tablet') {
         text-align: center;
       }
     }

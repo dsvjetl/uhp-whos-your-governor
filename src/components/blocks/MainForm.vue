@@ -82,7 +82,7 @@
       display: inline-block;
       margin-left: 20px;
 
-      @include media('>phone', '<=tablet') {
+      @include media('>=phone', '<=tablet') {
         display: block;
         margin: 10px 0 0;
         text-align: right;
@@ -96,7 +96,7 @@
     .inline-input {
       width: 200px;
 
-      @include media('>phone', '<=tablet') {
+      @include media('>=phone', '<=tablet') {
         width: 100%;
       }
     }
