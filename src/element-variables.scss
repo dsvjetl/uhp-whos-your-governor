@@ -3,9 +3,25 @@ Write your variables here. All available variables can be
 found in element-ui/packages/theme-chalk/src/common/var.scss.
 For example, to overwrite the theme color:
 */
-$--color-primary: teal;
+$--color-primary: $main;
 
 /* icon font path, required */
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
 @import "~element-ui/packages/theme-chalk/src/index";
+
+// RESET
+
+// input autocomplete
+.el-input__inner {
+  background-color: $purple-light-2;
+  color: $main;
+  border-radius: 0;
+
+  &::placeholder {
+    color: $purple-light-1;
+  }
+}
+.el-input__prefix {
+  color: $purple-light-1;
+}
