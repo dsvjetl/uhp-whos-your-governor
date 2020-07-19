@@ -10,7 +10,7 @@
       <p class="u-5 bottom">DARMSTADT / OSIJEK / ZAGREB</p>
     </div>
     <div class="info-block">
-      <p class="u-5 --bold-400 --right top">governor</p>
+      <p class="u-5 --bold-400 --right top governor">governor</p>
       <p class="u-5 bottom">who's your governor?</p>
     </div>
 
@@ -41,6 +41,22 @@
     bottom: 0;
     left: 0;
     right: 0;
+
+    @include media('>=phone', '<=tablet') {
+      position: static;
+      display: block;
+      padding: 20px percentage(1 / 24);
+      text-align: center;
+      height: 210px;
+
+      .governor {
+        text-align: center;
+      }
+
+      .info-block {
+        margin-bottom: 30px;
+      }
+    }
 
     .top {
       color: $purple;

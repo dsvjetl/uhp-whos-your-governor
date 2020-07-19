@@ -66,6 +66,7 @@
 
     @include media('>=phone', '<=tablet') {
       top: 0;
+      padding-bottom: 20px;
     }
 
     .place-name-wrapper {
