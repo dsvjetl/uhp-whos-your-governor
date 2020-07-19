@@ -84,7 +84,7 @@
 
       @include media('>=phone', '<=tablet') {
         display: block;
-        margin: 10px 0 0;
+        margin: 15px 0 0;
         text-align: right;
       }
     }

@@ -75,7 +75,8 @@
 
       @include media('>=phone', '<=tablet') {
         width: percentage(15 / 24);
-        padding: 10px 5px 15px percentage(3 / 24);
+        padding: 10px 20px 10px percentage(1 / 24);
+        text-align: center;
       }
     }
 
@@ -90,12 +91,22 @@
       padding: 30px percentage(7 / 24) 20px percentage(5 / 24);
       position: relative;
       justify-content: space-between;
+
+      @include media('>=phone', '<=tablet') {
+        display: block;
+        padding: 10px percentage(1 / 24);
+      }
     }
 
     .place-detail {
       flex-basis: 37%;
       display: flex;
       justify-content: space-between;
+
+      @include media('>=phone', '<=tablet') {
+        justify-content: left;
+        padding-left: percentage(1 / 24);
+      }
     }
 
     .key-name {
