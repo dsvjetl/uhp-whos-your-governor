@@ -28,7 +28,11 @@
         />
       </label>
       <div class="button-wrapper">
-        <AppButton class="submit-button">
+        <AppButton
+          class="submit-button"
+          :class="{'is-disabled': !isEverythingFilled}"
+          @click.native="onSubmit"
+        >
           <span class="u-5">Show Details</span>
         </AppButton>
       </div>
@@ -58,6 +62,23 @@
     public selectedTownOrCommunity: TownOrCommunity | null = null;
     public selectedTownOrCommunityName: string = '';
 
+    public get isEverythingFilled(): boolean {
+      return this.selectedCounty !== null &&
+        this.selectedTownOrCommunity !== null &&
+        this.selectedTownOrCommunityName.length > 0;
+    }
+
+    public onSubmit(): void {
+      if (!this.isEverythingFilled) {
+        return;
+      }
+
+      console.log({
+        selectedCounty: this.selectedCounty,
+        selectedTownOrCommunity: this.selectedTownOrCommunity,
+      });
+    }
+
     public countryQuerySearch(query: string, cb: ([]) => County[]): void {
       this.querySearch<County>(query, cb, this.allCountiesAlphabeticallyOrdered);
     }
@@ -85,6 +106,12 @@
 
     public onTownOrCommunitySelect(townOrCommunity: TownOrCommunity): void {
       this.selectedTownOrCommunity = townOrCommunity;
+      const filteredCounty: County = this.allCountiesAlphabeticallyOrdered.filter(
+        (county: County) => county.ID === townOrCommunity.countyID,
+      )[0];
+
+      this.selectedCounty = filteredCounty;
+      this.selectedCountyName = filteredCounty.name;
     }
 
     private querySearch<T>(query: string, cb: ([]) => any[], resources: T[]): void {
@@ -126,6 +153,11 @@
 
     .submit-button {
       height: 40px;
+
+      &.is-disabled {
+        pointer-events: none;
+        opacity: .5;
+      }
     }
 
     .inline-input {
