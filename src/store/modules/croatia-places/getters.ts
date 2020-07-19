@@ -1,7 +1,9 @@
-import { CroatiaPlacesState } from '@/types/CroatiaPlacesState';
+import { AllCountiesFilled, CroatiaPlacesState } from '@/types/CroatiaPlacesState';
+import { sortBy } from 'lodash';
 
 export const getters = {
-  allCounties(state: CroatiaPlacesState) {
-    return state.allCounties;
+  allCountiesAlphabeticallyOrdered(state: CroatiaPlacesState) {
+    const tempState = state as AllCountiesFilled;
+    return Object.keys(state.allCounties).length > 0 ? sortBy(tempState.allCounties.counties, ['name']) : [];
   },
 };

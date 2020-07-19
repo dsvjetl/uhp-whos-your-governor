@@ -1,7 +1,6 @@
 import { axiosCroatiaApi } from '@/api/axiosCroatiaApi';
 import { apiRoutes } from '@/api/apiRoutes';
 import { AjaxService } from '@/utils/services/AjaxService';
-import { VueConfiguration } from 'vue/types/vue';
 
 const axiosCroatiaApiService = new AjaxService(axiosCroatiaApi);
 

@@ -6,7 +6,7 @@
       <label class="form-label">
         <ElAutocomplete
           class="inline-input"
-          v-model="state1"
+          v-model="selectedCounty"
           :fetch-suggestions="querySearch"
           placeholder="County"
           prefix-icon="el-icon-location-outline"
@@ -19,8 +19,6 @@
       <label class="form-label">
         <ElAutocomplete
           class="inline-input"
-          v-model="state1"
-          :fetch-suggestions="querySearch"
           placeholder="County"
         />
       </label>
@@ -38,28 +36,26 @@
   import Vue from 'vue';
   import { Component } from 'vue-property-decorator';
   import AppButton from '@/components/elements/AppButton.vue';
+  import { mapGetters } from 'vuex';
+  import { County } from '@/types/County';
 
   @Component({
     components: { AppButton },
+    computed: mapGetters(['allCountiesAlphabeticallyOrdered']),
   })
   export default class MainForm extends Vue {
-    public state1: string = '';
+    public allCountiesAlphabeticallyOrdered: any;
+
+    public selectedCounty: County | null = null;
 
     public querySearch(query: string, cb: ([]) => string[]) {
-      const links = [
-        { value: 'vue', link: 'https://github.com/vuejs/vue' },
-        { value: 'element', link: 'https://github.com/ElemeFE/element' },
-        { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
-        { value: 'mint', link: 'https://github.com/ElemeFE/mint-ui' },
-        { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
-        { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
-        { value: 'babel', link: 'https://github.com/babel/babel' },
-        { value: 'mint', link: 'https://github.com/ElemeFE/mint-ui' },
-        { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
-        { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
-        { value: 'babel', link: 'https://github.com/babel/babel' },
-      ];
-      const results = query ? links.filter((link) => link.value.includes(query)) : links;
+      const counties: County[] = this.allCountiesAlphabeticallyOrdered.map(
+        (county: County) => Object.assign(county, { value: county.name }),
+      );
+      const results = query ?
+        counties.filter((county: County) => county.value!.toLowerCase().includes(query.toLowerCase())) :
+        counties;
+
       cb(results);
     }
   }
