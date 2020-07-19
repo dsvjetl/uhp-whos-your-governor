@@ -24,9 +24,11 @@
           placeholder="County"
         />
       </label>
-      <AppButton class="submit-button">
-        <span class="u-5">Show Details</span>
-      </AppButton>
+      <div class="button-wrapper">
+        <AppButton class="submit-button">
+          <span class="u-5">Show Details</span>
+        </AppButton>
+      </div>
     </div>
 
   </form>
@@ -76,13 +78,27 @@
       margin-bottom: 3px;
     }
 
-    .submit-button {
+    .button-wrapper {
+      display: inline-block;
       margin-left: 20px;
+
+      @include media('>phone', '<=tablet') {
+        display: block;
+        margin: 10px 0 0;
+        text-align: right;
+      }
+    }
+
+    .submit-button {
       height: 40px;
     }
 
     .inline-input {
       width: 200px;
+
+      @include media('>phone', '<=tablet') {
+        width: 100%;
+      }
     }
   }
 </style>

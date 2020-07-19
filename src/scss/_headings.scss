@@ -1,3 +1,4 @@
+// heading sizes
 .u-1 {
   font-size: clamp(2.5rem, 4vw, 4.5rem);
   font-weight: 200;
@@ -23,10 +24,24 @@
   font-weight: 200;
 }
 
+// font weight
+.--bold-400 {
+  font-weight: 400;
+}
+
 .--bold-500 {
   font-weight: 500;
 }
 
 .--bold-600 {
   font-weight: 600;
+}
+
+// text align
+.--center {
+  text-align: center;
+}
+
+.--right {
+  text-align: right;
 }

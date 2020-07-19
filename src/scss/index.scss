@@ -6,7 +6,10 @@
 @import "mixins";
 @import "colors";
 @import "headings";
+@import "include-media";
 
 body, html {
   width: percentage(24 / 24);
+  height: 100%;
+  margin: 0;
 }

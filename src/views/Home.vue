@@ -12,6 +12,7 @@
   import AppHeader from '@/components/blocks/AppHeader.vue';
   import UpperSection from '@/components/blocks/UpperSection.vue';
   import PlaceDetails from '@/components/blocks/PlaceDetails.vue';
+
   @Component({
     components: { PlaceDetails, UpperSection, AppHeader },
   })
@@ -21,5 +22,7 @@
 
 <style lang="scss" scoped>
   .co-home {
+    min-height: 100vh;
+    margin-bottom: -115px; // minus footer height
   }
 </style>

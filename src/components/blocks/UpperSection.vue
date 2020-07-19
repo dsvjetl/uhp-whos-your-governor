@@ -38,16 +38,29 @@
       width: 60px;
       height: 0;
       border: 3px solid $main;
+
+      @include media('>phone', '<=tablet') {
+        width: 100%;
+      }
     }
 
     .main-title {
       margin: 10px 0 0;
       max-width: 500px;
+
+      @include media('>phone', '<=tablet') {
+        text-align: center;
+      }
     }
 
     .left {
       width: percentage(12 / 24);
       padding: 100px 0 0 percentage(5 / 24);
+
+      @include media('<=custom915') {
+        width: percentage(24 / 24);
+        padding: 100px percentage(2 / 24) 0;
+      }
     }
 
     .right {
@@ -55,6 +68,10 @@
       width: percentage(12 / 24);
       text-align: right;
       z-index: 0;
+
+      @include media('<=custom915') {
+        display: none;
+      }
     }
 
     .speaker-icon {
