@@ -1,0 +1,18 @@
+{
+  "address": "Adresa",
+  "country": "Država",
+  "county": "Okrug",
+  "detailsFor": "Detalji za ",
+  "email": "E-mail",
+  "fax": "Faks",
+  "governor": "Guverner",
+  "mainTitlePart1": "Tko je tvoj ",
+  "mainTitlePart2": "Guverner ?",
+  "phone": "Telefon",
+  "showDetails": "Prikaži detalje",
+  "townOrCommunity": "Grad ili okrug",
+  "viceGovernor": "Vice Guverner",
+  "web": "Web",
+  "whosYourGovernor": "tko je tvoj guverner?",
+  "zipCode": "Poštanski Broj"
+}
