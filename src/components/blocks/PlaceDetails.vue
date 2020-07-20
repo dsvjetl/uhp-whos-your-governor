@@ -31,7 +31,9 @@
       </div>
       <div class="place-detail">
         <p class="u-5 key-name">Phone</p>
-        <p class="u-5 key-value">{{townAndCommunityDetails.phone}}</p>
+        <p class="u-5 key-value">
+          <a class="phone-anchor" :href="`tel:${townAndCommunityDetails.phone}`">{{townAndCommunityDetails.phone}}</a>
+        </p>
       </div>
       <div class="place-detail">
         <p class="u-5 key-name">Zip Code</p>
@@ -95,6 +97,11 @@
         padding: 10px 20px 10px percentage(1 / 24);
         text-align: center;
       }
+    }
+
+    .phone-anchor {
+      text-decoration: none;
+      color: $main;
     }
 
     .place-name {
