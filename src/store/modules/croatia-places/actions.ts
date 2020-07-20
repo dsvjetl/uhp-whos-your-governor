@@ -41,8 +41,8 @@ export const actions = {
   },
   async getTownAndCommunityDetails(context: any, townOrCommunity: TownOrCommunity): Promise<any> {
     let townAndCommunityDetails;
-    const townOrCommunityId: number = townOrCommunity.ID;
     const townOrCommunityEntityType: number = townOrCommunity.entityType;
+    const townOrCommunityId: number = townOrCommunity.ID;
 
     try {
       townAndCommunityDetails = await axiosCroatiaApiService.get(
