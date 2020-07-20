@@ -10,8 +10,8 @@
       <p class="u-5 bottom">DARMSTADT / OSIJEK / ZAGREB</p>
     </div>
     <div class="info-block">
-      <p class="u-5 --bold-400 --right top governor">governor</p>
-      <p class="u-5 bottom">who's your governor?</p>
+      <p class="u-5 --bold-400 --right --lowercase top governor">{{ $t('governor') }}</p>
+      <p class="u-5 bottom">{{ $t('whosYourGovernor') }}</p>
     </div>
 
   </footer>

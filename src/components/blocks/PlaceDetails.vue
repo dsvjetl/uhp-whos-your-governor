@@ -5,46 +5,46 @@
   >
 
     <div class="place-name-wrapper">
-      <p class="u-4 place-name">Details for {{townAndCommunityDetails.name}}</p>
+      <p class="u-4 place-name">{{ $t('detailsFor') }} {{townAndCommunityDetails.name}}</p>
     </div>
 
     <section class="place-details">
       <div class="place-detail">
-        <p class="u-5 key-name">Governor</p>
+        <p class="u-5 key-name">{{ $t('governor') }}</p>
         <p class="u-5 key-value">{{townAndCommunityDetails.governor}}</p>
       </div>
       <div class="place-detail">
-        <p class="u-5 key-name">Web</p>
+        <p class="u-5 key-name">{{ $t('web') }}</p>
         <p class="u-5 key-value">{{townAndCommunityDetails.web}}</p>
       </div>
       <div class="place-detail">
-        <p class="u-5 key-name">Vice Governor</p>
+        <p class="u-5 key-name">{{ $t('viceGovernor') }}</p>
         <p class="u-5 key-value">{{townAndCommunityDetails.viceGovernor}}</p>
       </div>
       <div class="place-detail">
-        <p class="u-5 key-name">Email</p>
+        <p class="u-5 key-name">{{ $t('email') }}</p>
         <p class="u-5 key-value">{{townAndCommunityDetails.email}}</p>
       </div>
       <div class="place-detail">
-        <p class="u-5 key-name">Address</p>
+        <p class="u-5 key-name">{{ $t('address') }}</p>
         <p class="u-5 key-value">{{townAndCommunityDetails.address}}</p>
       </div>
       <div class="place-detail">
-        <p class="u-5 key-name">Phone</p>
+        <p class="u-5 key-name">{{ $t('phone') }}</p>
         <p class="u-5 key-value">
           <a class="phone-anchor" :href="`tel:${townAndCommunityDetails.phone}`">{{townAndCommunityDetails.phone}}</a>
         </p>
       </div>
       <div class="place-detail">
-        <p class="u-5 key-name">Zip Code</p>
+        <p class="u-5 key-name">{{ $t('zipCode') }}</p>
         <p class="u-5 key-value">{{townAndCommunityDetails.zipCode}}</p>
       </div>
       <div class="place-detail">
-        <p class="u-5 key-name">Fax</p>
+        <p class="u-5 key-name">{{ $t('fax') }}</p>
         <p class="u-5 key-value">{{townAndCommunityDetails.fax}}</p>
       </div>
       <div class="place-detail">
-        <p class="u-5 key-name">Country</p>
+        <p class="u-5 key-name">{{ $t('country') }}</p>
         <p class="u-5 key-value">Croatia</p>
       </div>
     </section>

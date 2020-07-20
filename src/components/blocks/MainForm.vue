@@ -2,11 +2,11 @@
   <form class="co-main-form" @submit.prevent>
 
     <div class="form-field">
-      <p class="u-5 field-name --bold-500">County</p>
+      <p class="u-5 field-name --bold-500">{{ $t('county') }}</p>
       <label class="form-label">
         <ElAutocomplete
           class="inline-input"
-          placeholder="County"
+          :placeholder="$t('county')"
           prefix-icon="el-icon-location-outline"
           v-model="selectedCountyName"
           :fetch-suggestions="countryQuerySearch"
@@ -17,11 +17,11 @@
     </div>
 
     <div class="form-field">
-      <p class="u-5 field-name --bold-500">Town or Community</p>
+      <p class="u-5 field-name --bold-500">{{ $t('townOrCommunity') }}</p>
       <label class="form-label">
         <ElAutocomplete
           class="inline-input"
-          placeholder="County"
+          :placeholder="$t('townOrCommunity')"
           v-model="selectedTownOrCommunityName"
           :fetch-suggestions="townOrCommunityQuerySearch"
           @select="onTownOrCommunitySelect"
@@ -33,7 +33,7 @@
           :class="{'is-disabled': !isEverythingFilled}"
           @click.native="onSubmit"
         >
-          <span class="u-5">Show Details</span>
+          <span class="u-5">{{ $t('showDetails') }}</span>
         </AppButton>
       </div>
     </div>
