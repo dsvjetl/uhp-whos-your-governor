@@ -3,7 +3,7 @@
     <div class="left">
       <div class="temp-border"></div>
       <h1 class="u-1 main-title">
-        Who's Your <span class="--bold-600 governor">Governor ?</span>
+        {{ $t('mainTitlePart1') }}<span class="--bold-600 governor">{{ $t('mainTitlePart2') }}</span>
       </h1>
       <MainForm/>
     </div>
@@ -46,7 +46,7 @@
 
     .main-title {
       margin: 10px 0 0;
-      max-width: 500px;
+      max-width: 450px;
 
       @include media('>=phone', '<=tablet') {
         text-align: center;
