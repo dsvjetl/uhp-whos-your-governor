@@ -7,10 +7,18 @@
       <LogoIcon class="logo-icon"/>
     </div>
     <div class="right">
-      <AppButton class="lang-button">
+      <AppButton
+        class="lang-button"
+        :class="{'is-active': currentLocale === 'en'}"
+        @click.native="changeLocale('en')"
+      >
         <span class="u-5">EN</span>
       </AppButton>
-      <AppButton class="lang-button">
+      <AppButton
+        class="lang-button"
+        :class="{'is-active': currentLocale === 'hr'}"
+        @click.native="changeLocale('hr')"
+      >
         <span class="u-5">HR</span>
       </AppButton>
     </div>
@@ -21,14 +29,21 @@
   import Vue from 'vue';
   import { Component } from 'vue-property-decorator';
   import AppButton from '@/components/elements/AppButton.vue';
-  import IllustrationSpeakerIcon from '@/components/icons/IllustrationSpeakerIcon.vue';
   import LogoIcon from '@/components/icons/LogoIcon.vue';
+  import { TranslationsService } from '@/utils/services/TranslationsService';
 
   @Component({
     components: { LogoIcon, AppButton },
   })
   export default class AppHeader extends Vue {
     public hasBackground: boolean = false;
+    public translationsService = new TranslationsService(this.$root.$i18n);
+    public currentLocale: string = this.translationsService.getLocalStorageName();
+
+    public changeLocale(lang: string) {
+      this.translationsService.setLocalStorageName(lang);
+      this.currentLocale = this.translationsService.getLocalStorageName();
+    }
 
     private mounted(): void {
       this.eventListeners();
@@ -55,8 +70,8 @@
     @include transition-all;
 
     &.has-background {
-      background-color: $purple-light-2;
-      box-shadow: 0 7px 19px -1px $main;
+      background-color: $purple-light-1;
+      box-shadow: 0 7px 19px -1px $purple-light-1;
     }
 
     .left, .right {
@@ -81,6 +96,10 @@
     }
 
     .lang-button {
+      &.is-active {
+        border: 1px solid $white;
+      }
+
       &:first-of-type {
         margin-right: 10px;
       }

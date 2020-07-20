@@ -1,0 +1,18 @@
+{
+  "address": "Address",
+  "country": "Country",
+  "county": "County",
+  "detailsFor": "Details for ",
+  "email": "Email",
+  "fax": "Fax",
+  "governor": "Governor",
+  "mainTitlePart1": "Who's Your ",
+  "mainTitlePart2": "Governor ?",
+  "phone": "Phone",
+  "showDetails": "Show Details",
+  "townOrCommunity": "Town or Community",
+  "viceGovernor": "Vice Governor",
+  "web": "Web",
+  "whosYourGovernor": "who's your governor?",
+  "zipCode": "Zip Code"
+}

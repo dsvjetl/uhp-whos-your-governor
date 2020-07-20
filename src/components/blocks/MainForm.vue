@@ -1,32 +1,39 @@
 <template>
-  <form class="co-main-form">
+  <form class="co-main-form" @submit.prevent>
 
     <div class="form-field">
-      <p class="u-5 field-name --bold-500">County</p>
+      <p class="u-5 field-name --bold-500">{{ $t('county') }}</p>
       <label class="form-label">
         <ElAutocomplete
           class="inline-input"
-          v-model="state1"
-          :fetch-suggestions="querySearch"
-          placeholder="County"
+          :placeholder="$t('county')"
           prefix-icon="el-icon-location-outline"
+          v-model="selectedCountyName"
+          :fetch-suggestions="countryQuerySearch"
+          @select="onCountySelect"
+          @change="onCountyChange"
         />
       </label>
     </div>
 
     <div class="form-field">
-      <p class="u-5 field-name --bold-500">Town or Community</p>
+      <p class="u-5 field-name --bold-500">{{ $t('townOrCommunity') }}</p>
       <label class="form-label">
         <ElAutocomplete
           class="inline-input"
-          v-model="state1"
-          :fetch-suggestions="querySearch"
-          placeholder="County"
+          :placeholder="$t('townOrCommunity')"
+          v-model="selectedTownOrCommunityName"
+          :fetch-suggestions="townOrCommunityQuerySearch"
+          @select="onTownOrCommunitySelect"
         />
       </label>
       <div class="button-wrapper">
-        <AppButton class="submit-button">
-          <span class="u-5">Show Details</span>
+        <AppButton
+          class="submit-button"
+          :class="{'is-disabled': !isEverythingFilled}"
+          @click.native="onSubmit"
+        >
+          <span class="u-5">{{ $t('showDetails') }}</span>
         </AppButton>
       </div>
     </div>
@@ -38,28 +45,80 @@
   import Vue from 'vue';
   import { Component } from 'vue-property-decorator';
   import AppButton from '@/components/elements/AppButton.vue';
+  import { mapGetters } from 'vuex';
+  import { County } from '@/types/County';
+  import { TownOrCommunity } from '@/types/TownOrCommunity';
 
   @Component({
     components: { AppButton },
+    computed: mapGetters(['allCountiesAlphabeticallyOrdered', 'allTownsAndCommunitiesAlphabeticallyOrdered']),
   })
   export default class MainForm extends Vue {
-    public state1: string = '';
+    public allCountiesAlphabeticallyOrdered!: County[];
+    public allTownsAndCommunitiesAlphabeticallyOrdered!: TownOrCommunity[];
 
-    public querySearch(query: string, cb: ([]) => string[]) {
-      const links = [
-        { value: 'vue', link: 'https://github.com/vuejs/vue' },
-        { value: 'element', link: 'https://github.com/ElemeFE/element' },
-        { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
-        { value: 'mint', link: 'https://github.com/ElemeFE/mint-ui' },
-        { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
-        { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
-        { value: 'babel', link: 'https://github.com/babel/babel' },
-        { value: 'mint', link: 'https://github.com/ElemeFE/mint-ui' },
-        { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
-        { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
-        { value: 'babel', link: 'https://github.com/babel/babel' },
-      ];
-      const results = query ? links.filter((link) => link.value.includes(query)) : links;
+    public selectedCounty: County | null = null;
+    public selectedCountyName: string = '';
+    public selectedTownOrCommunity: TownOrCommunity | null = null;
+    public selectedTownOrCommunityName: string = '';
+
+    public get isEverythingFilled(): boolean {
+      return this.selectedCounty !== null &&
+        this.selectedTownOrCommunity !== null &&
+        this.selectedTownOrCommunityName.length > 0;
+    }
+
+    public onSubmit(): void {
+      if (!this.isEverythingFilled) {
+        return;
+      }
+
+      this.$store.dispatch('getTownAndCommunityDetails', this.selectedTownOrCommunity);
+    }
+
+    public countryQuerySearch(query: string, cb: ([]) => County[]): void {
+      this.querySearch<County>(query, cb, this.allCountiesAlphabeticallyOrdered);
+    }
+
+    public townOrCommunityQuerySearch(query: string, cb: ([]) => TownOrCommunity[]): void {
+      const allTownsAndCommunities = this.selectedCounty ?
+        this.allTownsAndCommunitiesAlphabeticallyOrdered.filter(
+          (townOrCommunity: TownOrCommunity) => townOrCommunity.countyID === this.selectedCounty!.ID,
+        ) : this.allTownsAndCommunitiesAlphabeticallyOrdered;
+
+      this.querySearch<TownOrCommunity>(query, cb, allTownsAndCommunities);
+    }
+
+    public onCountySelect(county: County): void {
+      this.selectedCounty = county;
+      this.selectedTownOrCommunity = null;
+      this.selectedTownOrCommunityName = '';
+    }
+
+    public onCountyChange(): void {
+      if (this.selectedCountyName.length <= 0) {
+        this.selectedCounty = null;
+      }
+    }
+
+    public onTownOrCommunitySelect(townOrCommunity: TownOrCommunity): void {
+      this.selectedTownOrCommunity = townOrCommunity;
+      const filteredCounty: County = this.allCountiesAlphabeticallyOrdered.filter(
+        (county: County) => county.ID === townOrCommunity.countyID,
+      )[0];
+
+      this.selectedCounty = filteredCounty;
+      this.selectedCountyName = filteredCounty.name;
+    }
+
+    private querySearch<T>(query: string, cb: ([]) => any[], resources: T[]): void {
+      const mappedResources: T[] = resources.map(
+        (resource: any) => Object.assign(resource, { value: resource.name }),
+      );
+      const results = query ?
+        mappedResources.filter((resource: any) => resource.value!.toLowerCase().includes(query.toLowerCase())) :
+        mappedResources;
+
       cb(results);
     }
   }
@@ -91,6 +150,11 @@
 
     .submit-button {
       height: 40px;
+
+      &.is-disabled {
+        pointer-events: none;
+        opacity: .5;
+      }
     }
 
     .inline-input {
